@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_BUILD_OPTIONS = noautodbgsym
+
+SHELL := sh -e
+VERSION ?= 5.3
+
+%:
+	dh ${@}
+
+override_dh_auto_clean:
+	rm -f config.h
+	$(MAKE) clean
+
+dmenu.c:
+	curl -s -L -O https://dl.suckless.org/tools/dmenu-$(VERSION).tar.gz
+	tar xzf dmenu-$(VERSION).tar.gz --strip-components=1
+	rm dmenu-$(VERSION).tar.gz
+
+.pc: dmenu.c
+	QUILT_PATCHES=debian/patches quilt push -a
+
+override_dh_auto_build: .pc
+	$(MAKE) PREFIX=/usr
+
+override_dh_auto_install:
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/dmenu PREFIX=/usr

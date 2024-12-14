@@ -1,0 +1,16 @@
+dmenu (5.3-2) stable; urgency=low
+
+  * dmenu 5.3
+  * debian:
+    - using quilt
+    - first release
+  * patches:
+    - border
+    - center
+    - config
+    - fuzzyhighlight
+    - fuzzymatch
+    - listfullwidth
+    - password
+
+ -- Stanislav Korolev <stan.korolev@mail.ru>  Sat, 14 Dec 2024 17:01:34 +0300

@@ -1,0 +1,18 @@
+Source: dmenu
+Section: x11
+Priority: optional
+Maintainer: Stanislav Korlev <stan.korolev@mail.ru>
+Build-Depends: debhelper-compat (= 13),
+               dpkg-dev (>= 1.16.1.1)
+Standards-Version: 4.6.2
+Homepage: https://tools.suckless.org/dmenu/
+Rules-Requires-Root: no
+
+Package: dmenu
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: suckless-tools, x11-xserver-utils
+Provides: x-window-manager
+Description: dmenu is a dynamic menu for X, originally designed for dwm.
+  It manages large numbers of user-defined menu items efficiently.
